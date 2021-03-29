@@ -4,9 +4,9 @@ qfrom=''
 def update(**kw):
   global qpass,qfrom
   if 'pass' in kw:
-  qpass=kw['pass']
+    qpass=kw['pass']
   if 'from' in kw:
-  qfrom=kw['from']
+    qfrom=kw['from']
 
 def qmail(fromName,content,subject):
   import smtplib
