@@ -1,10 +1,10 @@
-pass=''
+password=''
 from=''
 
 def update(**kw):
   global pass,from
   if 'pass' in kw:
-  pass=kw['pass']
+  password=kw['pass']
   if 'from' in kw:
   from=kw['from']
 
@@ -14,7 +14,7 @@ def qmail(fromName,content,subject):
   from email.utils import formataddr
    
   my_sender=from    # 发件人邮箱账号
-  my_pass = pass              # 发件人邮箱密码
+  my_pass = password              # 发件人邮箱密码
   my_user=from      # 收件人邮箱账号，我这边发送给自己
   def mail():
       msg=MIMEText(content,'plain','utf-8')
