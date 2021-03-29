@@ -1,21 +1,21 @@
-password=''
-from=''
+qpass=''
+qfrom=''
 
 def update(**kw):
-  global pass,from
+  global qpass,qfrom
   if 'pass' in kw:
-  password=kw['pass']
+  qpass=kw['pass']
   if 'from' in kw:
-  from=kw['from']
+  qfrom=kw['from']
 
 def qmail(fromName,content,subject):
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
    
-  my_sender=from    # 发件人邮箱账号
-  my_pass = password              # 发件人邮箱密码
-  my_user=from      # 收件人邮箱账号，我这边发送给自己
+  my_sender=qfrom    # 发件人邮箱账号
+  my_pass = qpass              # 发件人邮箱密码
+  my_user=qfrom      # 收件人邮箱账号，我这边发送给自己
   def mail():
       msg=MIMEText(content,'plain','utf-8')
       msg['From']=formataddr([from,my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
