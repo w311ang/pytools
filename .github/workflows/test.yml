@@ -22,7 +22,7 @@ jobs:
       with:
         repository: 'w311ang/pytools'
         path: './pytools'
-    - name: Test
       run: |
         cp ./pytools/pytools.py .
         ls
+
