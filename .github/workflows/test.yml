@@ -2,6 +2,9 @@ name: Test
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/test.yml'
 
 jobs:
   build:
@@ -15,6 +18,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: 'w311ang/pytools'
+        path: './pytools'
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
       timeout-minutes: 60
