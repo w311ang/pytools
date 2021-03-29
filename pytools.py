@@ -23,8 +23,7 @@ def qmail(fromName,content,subject):
       msg['Subject']=subject                # 邮件的主题，也可以说是标题
    
       server=smtplib.SMTP_SSL("smtp.qq.com", 465)  # 发件人邮箱中的SMTP服务器，端口是25
-      print(my_sender)
-      print(my_pass)
+      print(my_sender,my_pass)
       server.login(my_sender, my_pass)  # 括号中对应的是发件人邮箱账号、邮箱密码
       server.sendmail(my_sender,[my_user,],msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
       server.quit()  # 关闭连接
