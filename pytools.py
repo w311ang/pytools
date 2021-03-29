@@ -1,4 +1,14 @@
-def qmail(pass,from,fromName,to,content,subject)
+pass=''
+from=''
+
+def update(**kw):
+  global pass,from
+  if 'pass' in kw:
+  pass=kw['pass']
+  if 'from' in kw:
+  from=kw['from']
+
+def qmail(fromName,to,content,subject):
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
