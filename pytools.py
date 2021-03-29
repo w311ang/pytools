@@ -1,4 +1,5 @@
 pass=''
+
 def qmail(from,fromName,to,content,subject)
   import smtplib
   from email.mime.text import MIMEText
