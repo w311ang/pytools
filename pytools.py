@@ -18,7 +18,7 @@ def qmail(fromName,content,subject):
   my_user=qfrom      # 收件人邮箱账号，我这边发送给自己
   def mail():
       msg=MIMEText(content,'plain','utf-8')
-      msg['From']=formataddr([from,my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
+      msg['From']=formataddr([fromName,my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
       msg['To']=formataddr([my_user,my_user])              # 括号里的对应收件人邮箱昵称、收件人邮箱账号
       msg['Subject']=subject                # 邮件的主题，也可以说是标题
    
