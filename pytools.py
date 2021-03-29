@@ -1,6 +1,4 @@
-pass=''
-
-def qmail(from,fromName,to,content,subject)
+def qmail(pass,from,fromName,to,content,subject)
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
