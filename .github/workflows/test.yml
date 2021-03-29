@@ -22,6 +22,7 @@ jobs:
       with:
         repository: 'w311ang/pytools'
         path: './pytools'
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      timeout-minutes: 60
+    - name: Test
+      run: |
+        cp ./pytools/pytools.py .
+        ls
