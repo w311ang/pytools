@@ -1,4 +1,5 @@
 import pytools
+import os
 
 qpass=os.getenv('qpass')
 qfrom=os.getenv('qfrom')
