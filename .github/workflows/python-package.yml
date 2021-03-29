@@ -39,4 +39,4 @@ jobs:
         qpass: ${{ secrets.qpass }}
         qfrom: ${{ secrets.qfrom }}
       run: |
-        pytest pytools_test.py
+        pytest -s pytools_test.py
