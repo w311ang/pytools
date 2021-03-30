@@ -1,10 +1,5 @@
 ```yaml
-    - name: Checkout pytools
-      uses: actions/checkout@v2
-      with:
-        repository: 'w311ang/pytools'
-        path: './pytools'
     - name: Setup pytools
       run: |
-        cp ./pytools/pytools.py .
+        curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
 ```
