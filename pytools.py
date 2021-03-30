@@ -8,16 +8,21 @@ def update(**kw):
   if 'qfrom' in kw:
     qfrom=kw['qfrom']
 
-def qmail(fromName,content,subject):
+def qmail(fromName,content,subject,html=False):
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
+
+  if html:
+    type='html'
+  else:
+    type='plain'
    
   my_sender=qfrom    # 发件人邮箱账号
   my_pass = qpass              # 发件人邮箱密码
   my_user=qfrom      # 收件人邮箱账号，我这边发送给自己
   def mail():
-      msg=MIMEText(content,'plain','utf-8')
+      msg=MIMEText(content,type,'utf-8')
       msg['From']=formataddr([fromName,my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
       msg['To']=formataddr([my_user,my_user])              # 括号里的对应收件人邮箱昵称、收件人邮箱账号
       msg['Subject']=subject                # 邮件的主题，也可以说是标题
