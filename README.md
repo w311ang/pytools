@@ -7,4 +7,4 @@
 import pytools
 
 pytools.update(qpass='',qfrom='')
-qmail('fromName','content','subject')
+pytools.qmail('fromName','content','subject')
