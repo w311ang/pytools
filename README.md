@@ -5,5 +5,6 @@
 ```
 ```python
 import pytools
+
 pytools.update(qpass='',qfrom='')
 qmail('fromName','content','subject')
