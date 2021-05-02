@@ -6,4 +6,4 @@ js=os.getenv('json')
 
 output=aes.AESCipher(key).encrypt(js)
 with open('jmail.txt','w') as f:
-  f.write(str(output))
+  f.write(output.decode("utf-8"))
