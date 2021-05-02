@@ -42,7 +42,7 @@ jobs:
         json: ${{ secrets.json }}
         key: ${{ secrets.key }}
       run: |
-        pytest -s pytools_test.py
+        python auto.py
     - name: Test with pytest
       env:
         qpass: ${{ secrets.qpass }}
