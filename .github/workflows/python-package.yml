@@ -4,13 +4,11 @@
 name: Python package
 
 on:
-  push:
-    branches: [ main ]
-    paths-ignore:
-      - '.github/workflows/test.yml'
-      - 'README.md'
-  pull_request:
-    branches: [ main ]
+  workflow_run:
+    workflows: ["AES Auto"]
+    branches: [main]
+    types: 
+      - completed
 
 jobs:
   build:
