@@ -33,12 +33,6 @@ jobs:
         key: ${{ secrets.key }}
       run: |
         python auto.py
-    - name: Test with pytest
-      env:
-        qpass: ${{ secrets.qpass }}
-        qfrom: ${{ secrets.qfrom }}
-      run: |
-        pytest -s pytools_test.py
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
