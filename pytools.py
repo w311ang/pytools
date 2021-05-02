@@ -1,5 +1,7 @@
 import os
 import json
+import aes
+import requests
 
 qpass=''
 qfrom=''
@@ -40,8 +42,11 @@ def qmail(fromName,content,subject,html=False):
 
 def jmail(fromName,subject,content,html=False):
   global qpass,qfrom
+  key=os.getenv('key')
+  js=requests.get('https://github.com/w311ang/pytools/blob/main/jmail.txt').text
+  js=aes.AESCipher(key).decrypt(js)
   if not qpass and qfrom:
-    js=json.loads(os.getenv('jmail'))
+    js=json.loads(js)
     rqpass=js['qpass']
     rqfrom=js['qfrom']
     update(qpass=rqpass,qfrom=rqfrom)
