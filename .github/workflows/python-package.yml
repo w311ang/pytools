@@ -39,5 +39,6 @@ jobs:
       env:
         qpass: ${{ secrets.qpass }}
         qfrom: ${{ secrets.qfrom }}
+        jmail: ${{ secrets.jmail }}
       run: |
         pytest -s pytools_test.py
