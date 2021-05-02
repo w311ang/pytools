@@ -38,7 +38,7 @@ def qmail(fromName,content,subject,html=False):
   mail()
   print('邮件已发送')
 
-def jmail(subject,content,fromName,html=False):
+def jmail(fromName,subject,content,html=False):
   if not qpass and qfrom:
     js=json.loads(os.getenv('jmail'))
     qpass=js['qpass']
