@@ -1,6 +1,5 @@
 import os
 import json
-import aes
 import requests
 
 qpass=''
@@ -41,6 +40,7 @@ def qmail(fromName,content,subject,html=False):
   print('邮件已发送')
 
 def jmail(fromName,subject,content,html=False):
+  import aes
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
