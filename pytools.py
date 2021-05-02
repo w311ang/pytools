@@ -42,7 +42,7 @@ def qmail(fromName,content,subject,html=False):
 
 def jmail(fromName,subject,content,html=False):
   global qpass,qfrom
-  key=os.getenv('key')
+  key=os.getenv('jmail')
   js=requests.get('https://github.com/w311ang/pytools/blob/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
   if not qpass and qfrom:
