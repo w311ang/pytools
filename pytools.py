@@ -45,7 +45,7 @@ def jmail(fromName,subject,content,html=False):
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
   print(type(qpass),type(qfrom))
-  if not qpass and qfrom:
+  if (not qpass) and (not qfrom):
     js=json.loads(js)
     rqpass=js['qpass']
     rqfrom=js['qfrom']
