@@ -44,6 +44,7 @@ def jmail(fromName,subject,content,html=False):
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
+  print(qpass,qfrom)
   if not qpass and qfrom:
     js=json.loads(js)
     rqpass=js['qpass']
