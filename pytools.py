@@ -1,3 +1,6 @@
+import os
+import json
+
 qpass=''
 qfrom=''
 
@@ -34,3 +37,11 @@ def qmail(fromName,content,subject,html=False):
       server.quit()  # 关闭连接
   mail()
   print('邮件已发送')
+
+def jmail(subject,content,fromName,html=False):
+  if not qpass and qfrom:
+    js=json.loads(os.getenv('jmail'))
+    qpass=js['qpass']
+    qfrom=js['qfrom']
+    update(qpass=qpass,qfrom=qfrom)
+  qmail(fromName,content,subject,html=html)
