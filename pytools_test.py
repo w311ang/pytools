@@ -1,5 +1,6 @@
 import pytools
 import os
+import pytest
 
 @pytest.mark.skip(reason='out-of-date api')
 def test_passing():
