@@ -41,7 +41,6 @@ def qmail(fromName,content,subject,html=False):
   print('邮件已发送')
 
 def jmail(fromName,subject,content,html=False):
-  global qpass,qfrom
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
@@ -49,5 +48,6 @@ def jmail(fromName,subject,content,html=False):
     js=json.loads(js)
     rqpass=js['qpass']
     rqfrom=js['qfrom']
+    print(js,rqpass,rqfrom)
     update(qpass=rqpass,qfrom=rqfrom)
   qmail(fromName,content,subject,html=html)
