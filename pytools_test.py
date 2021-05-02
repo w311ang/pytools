@@ -2,7 +2,6 @@ import pytools
 import os
 import pytest
 
-@pytest.mark.skip(reason='out-of-date api')
 def test_passing():
   qpass=os.getenv('qpass')
   qfrom=os.getenv('qfrom')
