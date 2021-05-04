@@ -42,5 +42,5 @@ PyCryptodome
         sed -i 's/print(/echo(/g'
 ```
 ```python
-import pytools
+from pytools import echo
 ```
