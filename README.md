@@ -39,7 +39,7 @@ PyCryptodome
         curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
     - name: Run
       run: |
-        sed -i 's/print(/echo(/g'
+        sed -i 's/print(/echo(/g' 文件名
 ```
 ```python
 from pytools import echo
