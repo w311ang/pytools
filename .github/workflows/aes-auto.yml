@@ -35,7 +35,8 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run
       env:
-        json: ${{ secrets.json }}
+        qfrom: ${{ secrets.qfrom }}
+        qpass: ${{ secrets.qpass }}
         key: ${{ secrets.key }}
       run: |
         python auto.py
