@@ -56,6 +56,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run
+        run: |
+          
 ```
