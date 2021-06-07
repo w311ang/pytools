@@ -41,3 +41,21 @@ PyCryptodome
 ```python
 from pytools import echo as print
 ```
+
+## main.yml
+```yaml
+name: 
+
+on:
+  push:
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 
+        run: |
+```
