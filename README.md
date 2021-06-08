@@ -48,6 +48,8 @@ name:
 
 on:
   push:
+    paths-ignore:
+      - 'README.md'
   schedule:
     - cron: 0 0 * * *
   workflow_dispatch:
