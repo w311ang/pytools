@@ -51,7 +51,7 @@ on:
     paths-ignore:
       - 'README.md'
   schedule:
-    - cron: 12 0 * * *
+    - cron: 0 12 * * *
   workflow_dispatch:
 
 jobs:
