@@ -20,7 +20,7 @@ pytools.qmail('fromName','content','subject')
         pip install PyCryptodome
     - name: Run
       env:
-        jmail: ${{ secrets.jmail }}
+        jmail: ${{ secrets.jmail_password }}
       run: |
 ```
 ```python
