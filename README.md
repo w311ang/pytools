@@ -17,6 +17,7 @@ pytools.qmail('fromName','content','subject')
       run: |
         curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
         curl -O https://raw.githubusercontent.com/w311ang/pytools/main/aes.py
+        pip install PyCryptodome
     - name: Run
       env:
         jmail: ${{ secrets.jmail }}
@@ -26,10 +27,6 @@ pytools.qmail('fromName','content','subject')
 import pytools
 
 pytools.jmail('fromName','subject','content')
-```
-`requirements.txt`
-```
-PyCryptodome
 ```
 
 ## echo
