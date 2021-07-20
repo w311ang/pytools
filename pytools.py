@@ -55,10 +55,12 @@ def echo(str):
   os.system("echo '%s'"%str)
 
 def pickledump(var,path):
+  import pickle
   with open(path,'wb') as f:
     pickle.dump(var,f)
 
 def pickleread(path,*args):
+  import pickle
   theback=args[0]
   try:
     with open(path,'rb') as f:
