@@ -53,3 +53,15 @@ def jmail(fromName,subject,content,html=False):
 
 def echo(str):
   os.system("echo '%s'"%str)
+
+def pickledump(var,path):
+  with open(path,'wb') as f:
+    pickle.dump(var,f)
+
+def pickleread(path,*args):
+  theback=args[0]
+  try:
+    with open(path,'rb') as f:
+      return pickle.load(f)
+  except FileNotFoundError:
+    return theback
