@@ -10,3 +10,8 @@ setup(name='MyPytools',
       url='https://github.com/w311ang/pytools',
       packages=['pytools'],
       )
+
+install_requires=[
+   'requests',
+   'PyCryptodome'
+]
