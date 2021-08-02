@@ -15,7 +15,7 @@ pytools.qmail('fromName','content','subject')
 ```yaml
     - name: Setup pytools
       run: |
-        pip install  --upgrade git+https://github.com/w311ang/pytools.git@package
+        pip install --upgrade git+https://github.com/w311ang/pytools.git@package
     - name: Run
       env:
         jmail: ${{ secrets.jmail_password }}
