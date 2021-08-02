@@ -15,16 +15,14 @@ pytools.qmail('fromName','content','subject')
 ```yaml
     - name: Setup pytools
       run: |
-        curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
-        curl -O https://raw.githubusercontent.com/w311ang/pytools/main/aes.py
-        pip install PyCryptodome
+        pip install git+https://github.com/w311ang/pytools.git@package --upgrade
     - name: Run
       env:
         jmail: ${{ secrets.jmail_password }}
       run: |
 ```
 ```python
-import pytools
+from pytools import pytools
 
 pytools.jmail('fromName','subject','content')
 ```
