@@ -9,9 +9,8 @@ setup(name='MyPytools',
       author_email='w311angw311ang@gmail.com',
       url='https://github.com/w311ang/pytools',
       packages=['pytools'],
+      install_requires=[
+        'requests',
+        'PyCryptodome'
+      ]
       )
-
-install_requires=[
-   'requests',
-   'PyCryptodome'
-]
