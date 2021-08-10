@@ -67,3 +67,9 @@ def pickleread(path,*args):
       return pickle.load(f)
   except FileNotFoundError:
     return theback
+
+def execCmd(cmd):
+    r = os.popen(cmd)
+    text = r.read()
+    r.close()
+    return text
