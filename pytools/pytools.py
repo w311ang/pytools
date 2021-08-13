@@ -75,7 +75,7 @@ def execCmd(cmd):
     r.close()
     return text
 
-def getListOfProcessSortedByMemory():
+def getListOfProcessSortedByCpu():
     '''
     Get list of running process sorted by Memory Usage
     '''
