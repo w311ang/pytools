@@ -95,5 +95,3 @@ def getListOfProcessSortedByMemory():
     listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['cpu'], reverse=True)
 
     return listOfProcObjects
-
-print(getListOfProcessSortedByMemory())
