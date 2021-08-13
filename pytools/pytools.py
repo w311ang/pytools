@@ -88,7 +88,7 @@ def getListOfProcessSortedByCpu():
            pinfo['cpu'] = proc.cpu_percent(interval=0.5) / psutil.cpu_count()
            # Append dict to list
            listOfProcObjects.append(pinfo);
-       except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+       except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess, PermissionError):
            pass
 
     # Sort list of dict by key vms i.e. memory usage
