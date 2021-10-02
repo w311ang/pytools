@@ -2,6 +2,13 @@ import os
 import json
 import requests
 import psutil
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formataddr
+import _aes as aes
+import pickle
+import platform    # For getting the operating system name
+import subprocess  # For executing a shell command
 
 qpass=''
 qfrom=''
@@ -14,10 +21,6 @@ def update(**kw):
     qfrom=kw['qfrom']
 
 def qmail(fromName,content,subject,html=False):
-  import smtplib
-  from email.mime.text import MIMEText
-  from email.utils import formataddr
-
   if html:
     type='html'
   else:
@@ -41,7 +44,6 @@ def qmail(fromName,content,subject,html=False):
   print('邮件已发送')
 
 def jmail(fromName,subject,content,html=False):
-  import _aes as aes
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
@@ -56,12 +58,10 @@ def echo(str):
   os.system("echo '%s'"%str)
 
 def pickledump(var,path):
-  import pickle
   with open(path,'wb') as f:
     pickle.dump(var,f)
 
 def pickleread(path,*args):
-  import pickle
   theback=args[0]
   try:
     with open(path,'rb') as f:
@@ -97,8 +97,6 @@ def getListOfProcessSortedByCpu():
     return listOfProcObjects
 
 def ping(host):
-    import platform    # For getting the operating system name
-    import subprocess  # For executing a shell command
     """
     Returns True if host (str) responds to a ping request.
     Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
