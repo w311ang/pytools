@@ -8,7 +8,7 @@ setup(name='MyPytools',
       author='w311ang',
       author_email='w311angw311ang@gmail.com',
       url='https://github.com/w311ang/pytools',
-      packages=['pytools'],
+      packages=['pytools','_aes'],
       install_requires=[
         'requests',
         'PyCryptodome',
