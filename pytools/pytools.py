@@ -111,3 +111,25 @@ def ping(host):
     command = ['ping', param, '1', host]
 
     return subprocess.call(command) == 0
+
+def get_pid(name):
+    '''
+     作用：根据进程名获取进程pid
+    '''
+    re=[]
+    pids = psutil.process_iter()
+    #print("[" + name + "]'s pid is:")
+    for pid in pids:
+        if(pid.name() == name):
+            re.append(pid.pid)
+    return re
+
+def kill(name):
+    pid=get_pid(name)
+    if pid!=[]:
+        for i in pid:
+            p=psutil.Process(i)
+            p.terminate()
+    else:
+        return 'not running'
+
