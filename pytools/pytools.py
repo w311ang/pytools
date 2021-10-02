@@ -1,7 +1,6 @@
 import os
 import json
 import requests
-import psutil
 import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
@@ -79,6 +78,8 @@ def getListOfProcessSortedByCpu():
     '''
     Get list of running process sorted by Memory Usage
     '''
+    import psutil
+
     listOfProcObjects = []
     # Iterate over the list
     for proc in psutil.process_iter():
@@ -114,6 +115,8 @@ def get_pid(name):
     '''
      作用：根据进程名获取进程pid
     '''
+    import psutil
+
     re=[]
     pids = psutil.process_iter()
     #print("[" + name + "]'s pid is:")
