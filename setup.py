@@ -11,7 +11,7 @@ setup(name='MyPytools',
       packages=['pytools'],
       install_requires=[
         'requests',
-        'PyCryptodome'
+        'PyCryptodome',
         'psutil'
       ]
       )
