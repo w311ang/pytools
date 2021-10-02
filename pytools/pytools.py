@@ -126,6 +126,8 @@ def get_pid(name):
     return re
 
 def kill(name):
+    import psutil
+
     pid=get_pid(name)
     if pid!=[]:
         for i in pid:
