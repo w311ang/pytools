@@ -136,3 +136,16 @@ def kill(name):
     else:
         return 'not running'
 
+def cookie2dic(rawdata):
+  from http.cookies import SimpleCookie
+
+  rawdata = 'Cookie: '+rawdata
+  cookie = SimpleCookie()
+  cookie.load(rawdata)
+
+  # Even though SimpleCookie is dictionary-like, it internally uses a Morsel object
+  # which is incompatible with requests. Manually construct a dictionary instead.
+  cookies = {}
+  for key, morsel in cookie.items():
+    cookies[key] = morsel.value
+  return cookies
