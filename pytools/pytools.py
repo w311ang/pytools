@@ -20,6 +20,7 @@ def update(**kw):
     qfrom=kw['qfrom']
 
 def qmail(fromName,content,subject,html=False,to=qfrom):
+  print(to)
   if html:
     type='html'
   else:
