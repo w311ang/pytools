@@ -51,7 +51,7 @@ def jmail(fromName,subject,content,html=False,to=qfrom):
     rqpass=js['qpass']
     rqfrom=js['qfrom']
     update(qpass=rqpass,qfrom=rqfrom)
-  qmail(fromName,content,subject,html=html,to=qfrom)
+  qmail(fromName,content,subject,html=html,to=to)
 
 def echo(str):
   os.system("echo '%s'"%str)
