@@ -20,7 +20,7 @@ def update(**kw):
     qfrom=kw['qfrom']
 
 def qmail(fromName,content,subject,html=False,to=None):
-  to=qfrom if to else to
+  to=qfrom if not to else to
   if html:
     type='html'
   else:
@@ -52,7 +52,6 @@ def jmail(fromName,subject,content,html=False,to=None):
     rqpass=js['qpass']
     rqfrom=js['qfrom']
     update(qpass=rqpass,qfrom=rqfrom)
-  to=qfrom if to else to
   qmail(fromName,content,subject,html=html,to=to)
 
 def echo(str):
