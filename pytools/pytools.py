@@ -19,7 +19,7 @@ def update(**kw):
   if 'qfrom' in kw:
     qfrom=kw['qfrom']
 
-def qmail(fromName,content,subject,html=False):
+def qmail(fromName,content,subject,html=False,to=qfrom):
   if html:
     type='html'
   else:
@@ -27,7 +27,7 @@ def qmail(fromName,content,subject,html=False):
    
   my_sender=qfrom    # 发件人邮箱账号
   my_pass = qpass              # 发件人邮箱密码
-  my_user=qfrom      # 收件人邮箱账号，我这边发送给自己
+  my_user=to      # 收件人邮箱账号，我这边发送给自己
   def mail():
       msg=MIMEText(content,type,'utf-8')
       msg['From']=formataddr([fromName,my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
@@ -42,7 +42,7 @@ def qmail(fromName,content,subject,html=False):
   mail()
   print('邮件已发送')
 
-def jmail(fromName,subject,content,html=False):
+def jmail(fromName,subject,content,html=False,to=qfrom):
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
@@ -51,7 +51,7 @@ def jmail(fromName,subject,content,html=False):
     rqpass=js['qpass']
     rqfrom=js['qfrom']
     update(qpass=rqpass,qfrom=rqfrom)
-  qmail(fromName,content,subject,html=html)
+  qmail(fromName,content,subject,html=html,to=qfrom)
 
 def echo(str):
   os.system("echo '%s'"%str)
