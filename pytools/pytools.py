@@ -19,8 +19,8 @@ def update(**kw):
   if 'qfrom' in kw:
     qfrom=kw['qfrom']
 
-def qmail(fromName,content,subject,html=False,to=qfrom):
-  print(to)
+def qmail(fromName,content,subject,html=False,to=None):
+  to=qfrom if to else to
   if html:
     type='html'
   else:
@@ -43,7 +43,7 @@ def qmail(fromName,content,subject,html=False,to=qfrom):
   mail()
   print('邮件已发送')
 
-def jmail(fromName,subject,content,html=False,to=qfrom):
+def jmail(fromName,subject,content,html=False,to=None):
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
@@ -52,6 +52,7 @@ def jmail(fromName,subject,content,html=False,to=qfrom):
     rqpass=js['qpass']
     rqfrom=js['qfrom']
     update(qpass=rqpass,qfrom=rqfrom)
+  to=qfrom if to else to
   qmail(fromName,content,subject,html=html,to=to)
 
 def echo(str):
