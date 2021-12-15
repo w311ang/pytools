@@ -8,6 +8,7 @@ from pytools import _aes as aes
 import pickle
 import platform    # For getting the operating system name
 import subprocess  # For executing a shell command
+from bs4 import BeautifulSoup
 
 qpass=''
 qfrom=''
@@ -150,3 +151,33 @@ def cookie2dic(rawdata):
   for key, morsel in cookie.items():
     cookies[key] = morsel.value
   return cookies
+
+passed=[]
+
+def pas(host,pw):
+  s=requests.Session()
+  s.verify=False
+  requests.packages.urllib3.disable_warnings()
+  if ('http://' or 'https://') in host:
+    url=host.replace('https://','http://')
+  else:
+    url='http://'+host
+  #print(host)
+  if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url).text):
+    with s.get(url) as web:
+      text=web.text
+      soup=BeautifulSoup(text,features='lxml')
+      csrf=soup.find('input',{'name':'csrf'}).get('value')
+      ip=soup.find('input',{'name':'ip'}).get('value')
+    with s.post(url,data={'pw':pw,'csrf':csrf,'ip':ip}) as web:
+      #print(web.request.body)
+      text=web.text
+      soup=BeautifulSoup(text,features='lxml')
+      notice=soup.find('div',{'class':'notice'}).string
+      notice=notice.strip()
+      print(notice)
+      if '认证成功' in notice:
+        passed.append(url)
+      return notice
+  else:
+    print('已验证过')
