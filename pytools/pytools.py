@@ -9,7 +9,7 @@ import pickle
 import platform    # For getting the operating system name
 import subprocess  # For executing a shell command
 from bs4 import BeautifulSoup
-import socket
+import dns.resolver
 from urllib.parse import urlparse
 
 qpass=''
@@ -155,12 +155,9 @@ def cookie2dic(rawdata):
   return cookies
 
 def getip(domain):
-  ip_list = []
-  ais = socket.getaddrinfo(domain,0,0,0,0)
-  for result in ais:
-    ip_list.append(result[-1][0])
-  ip_list = list(set(ip_list))
-  return ip_list[0]
+  answers = dns.resolver.resolve(domain, 'A')
+  for answer in answers:
+    ruturn answer.to_text()
 
 passed=[]
 
