@@ -9,7 +9,6 @@ import pickle
 import platform    # For getting the operating system name
 import subprocess  # For executing a shell command
 from bs4 import BeautifulSoup
-import dns.resolver
 from urllib.parse import urlparse
 
 qpass=''
@@ -161,16 +160,19 @@ def getip(domain):
 
 passed=[]
 
-def pas(host,pw,useIp=True):
+def pas(host,pw):
   s=requests.Session()
   s.verify=False
   requests.packages.urllib3.disable_warnings()
-  print(host,url)
-  urlp=urlparse(host)
-  domain=urlp.hostname
-  port=urlp.port
-  url='https://%s:%s'%(getip(domain) if useIp else domain,port)
-  if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url.replace('https://','http://')).text):
+  with s.get('http://'+host) as web:
+    hometext=web.text
+    homeurl=web.url
+    urlp=urlparse(homeurl)
+    domain=urlp.hostname
+    port=urlp.port
+    url='https://%s:%s'%(domain,port)
+    
+  if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in hometext):
     with s.get(url) as web:
       text=web.text
       soup=BeautifulSoup(text,features='lxml')
