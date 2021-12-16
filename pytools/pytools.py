@@ -165,13 +165,11 @@ def pas(host,pw,useIp=True):
   s=requests.Session()
   s.verify=False
   requests.packages.urllib3.disable_warnings()
-
+  print(host,url)
   urlp=urlparse(host)
   domain=urlp.hostname
   port=urlp.port
   url='https://%s:%s'%(getip(domain) if useIp else domain,port)
-
-  print(host,url)
   if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url.replace('https://','http://')).text):
     with s.get(url) as web:
       text=web.text
