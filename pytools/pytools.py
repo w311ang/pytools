@@ -9,6 +9,7 @@ import pickle
 import platform    # For getting the operating system name
 import subprocess  # For executing a shell command
 from bs4 import BeautifulSoup
+import dns.resolver
 from urllib.parse import urlparse
 
 qpass=''
