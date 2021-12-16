@@ -174,7 +174,7 @@ def pas(host,pw,useIp=True):
   port=urlp.port
   url='https://%s:%s'%(getip(domain) if useIp else domain,port)
 
-  #print(host)
+  print(host,url)
   if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url.replace('https://','http://')).text):
     with s.get(url) as web:
       text=web.text
