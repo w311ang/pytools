@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='MyPytools',
-      version='2.2.0',
+      version='2.2.1',
       description='My Python utility',
       author='w311ang',
       author_email='w311angw311ang@gmail.com',
@@ -13,6 +13,7 @@ setup(name='MyPytools',
         'requests',
         'PyCryptodome',
         'psutil',
-        'beautifulsoup4'
+        'beautifulsoup4',
+        'lxml'
       ]
       )
