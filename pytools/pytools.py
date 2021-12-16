@@ -159,11 +159,11 @@ def pas(host,pw):
   s.verify=False
   requests.packages.urllib3.disable_warnings()
   if ('http://' or 'https://') in host:
-    url=host.replace('https://','http://')
+    url=host.replace('http://','https://')
   else:
-    url='http://'+host
+    url='https://'+host
   #print(host)
-  if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url).text):
+  if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url.replace('https://','http://')).text):
     with s.get(url) as web:
       text=web.text
       soup=BeautifulSoup(text,features='lxml')
