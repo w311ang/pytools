@@ -169,7 +169,7 @@ def pas(host,pw,useIp=True):
   s.verify=False
   requests.packages.urllib3.disable_warnings()
 
-  urlp=urlparse('host')
+  urlp=urlparse(host)
   domain=urlp.hostname
   port=urlp.port
   url='https://%s:%s'%(getip(domain) if useIp else domain,port)
