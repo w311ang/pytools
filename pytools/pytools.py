@@ -9,6 +9,7 @@ import pickle
 import platform    # For getting the operating system name
 import subprocess  # For executing a shell command
 from bs4 import BeautifulSoup
+import socket
 
 qpass=''
 qfrom=''
@@ -152,15 +153,25 @@ def cookie2dic(rawdata):
     cookies[key] = morsel.value
   return cookies
 
+def getip(domain):
+  ip_list = []
+  ais = socket.getaddrinfo(domain,0,0,0,0)
+  for result in ais:
+    ip_list.append(result[-1][0])
+  ip_list = list(set(ip_list))
+  return ip_list[0]
+
 passed=[]
 
-def pas(host,pw):
+def pas(host,pw,useIp=True):
   s=requests.Session()
   s.verify=False
   requests.packages.urllib3.disable_warnings()
   if ('http://' or 'https://') in host:
     url=host.replace('http://','https://')
   else:
+    if useIp:
+      host=getip(host)
     url='https://'+host
   #print(host)
   if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url.replace('https://','http://')).text):
