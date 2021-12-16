@@ -157,7 +157,7 @@ def cookie2dic(rawdata):
 def getip(domain):
   answers = dns.resolver.resolve(domain, 'A')
   for answer in answers:
-    ruturn answer.to_text()
+    return answer.to_text()
 
 passed=[]
 
