@@ -12,6 +12,7 @@ setup(name='MyPytools',
       install_requires=[
         'requests',
         'PyCryptodome',
-        'psutil'
+        'psutil',
+        'beautifulsoup4'
       ]
       )
