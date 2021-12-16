@@ -10,6 +10,7 @@ import platform    # For getting the operating system name
 import subprocess  # For executing a shell command
 from bs4 import BeautifulSoup
 import socket
+from urllib.parse import urlparse
 
 qpass=''
 qfrom=''
@@ -167,12 +168,10 @@ def pas(host,pw,useIp=True):
   s=requests.Session()
   s.verify=False
   requests.packages.urllib3.disable_warnings()
-  if ('http://' or 'https://') in host:
-    url=host.replace('http://','https://')
-  else:
-    if useIp:
-      host=getip(host)
-    url='https://'+host
+  with urlparse('host') as urlp:
+    domain=urlp.hostname
+    port=urlp.port
+    url='https://%s:%s'%(getip(domain) if useIp else domain,port)
   #print(host)
   if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in s.get(url.replace('https://','http://')).text):
     with s.get(url) as web:
