@@ -14,6 +14,7 @@ setup(name='MyPytools',
         'PyCryptodome',
         'psutil',
         'beautifulsoup4',
-        'lxml'
+        'lxml',
+        'dnspython'
       ]
       )
