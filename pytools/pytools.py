@@ -159,8 +159,9 @@ def getip(domain):
   for answer in answers:
     return answer.to_text()
 
-def bypassCC(sessionName=s):
-  sessionName.headers.update({'User-Agent':'Mozilla/5.0 (Linux; Android 10; ONEPLUS A5010) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.104 Mobile Safari/537.36'})
+def bypassCC():
+  global s
+  s.headers.update({'User-Agent':'Mozilla/5.0 (Linux; Android 10; ONEPLUS A5010) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.104 Mobile Safari/537.36'})
 
 passed=[]
 
