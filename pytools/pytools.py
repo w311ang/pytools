@@ -159,15 +159,14 @@ def getip(domain):
   for answer in answers:
     return answer.to_text()
 
-def bypassCC():
-  global s
-  s.headers.update({'User-Agent':'Mozilla/5.0 (Linux; Android 10; ONEPLUS A5010) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.104 Mobile Safari/537.36'})
+def bypassCC(session):
+  session.headers.update({'User-Agent':'Mozilla/5.0 (Linux; Android 10; ONEPLUS A5010) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.104 Mobile Safari/537.36'})
 
 passed=[]
 
 def pas(host,pw):
   s=requests.Session()
-  bypassCC()
+  bypassCC(s)
   s.verify=False
   requests.packages.urllib3.disable_warnings()
   with s.get('http://'+host) as web:
