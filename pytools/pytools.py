@@ -11,6 +11,7 @@ import subprocess  # For executing a shell command
 from bs4 import BeautifulSoup
 import dns.resolver
 from urllib.parse import urlparse
+import hashlib
 
 qpass=''
 qfrom=''
@@ -195,3 +196,8 @@ def pas(host,pw):
       return notice
   else:
     print('已验证过')
+
+def tomd5(string):
+  hl = hashlib.md5()
+  hl.update(string.encode(encoding='utf-8'))
+  return hl.hexdigest()
