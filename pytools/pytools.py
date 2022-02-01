@@ -1,18 +1,3 @@
-import os
-import json
-import requests
-import smtplib
-from email.mime.text import MIMEText
-from email.utils import formataddr
-from pytools import _aes as aes
-import pickle
-import platform    # For getting the operating system name
-import subprocess  # For executing a shell command
-from bs4 import BeautifulSoup
-import dns.resolver
-from urllib.parse import urlparse
-import hashlib
-
 qpass=''
 qfrom=''
 
@@ -24,6 +9,10 @@ def update(**kw):
     qfrom=kw['qfrom']
 
 def qmail(fromName,content,subject,html=False,to=None):
+  import smtplib
+  from email.mime.text import MIMEText
+  from email.utils import formataddr
+
   to=qfrom if not to else to
   if html:
     type='html'
@@ -48,6 +37,13 @@ def qmail(fromName,content,subject,html=False,to=None):
   print('邮件已发送')
 
 def jmail(fromName,subject,content,html=False,to=None):
+  import smtplib
+  from email.mime.text import MIMEText
+  from email.utils import formataddr
+  import requests
+  from pytools import _aes as aes
+  import json
+
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
@@ -59,13 +55,19 @@ def jmail(fromName,subject,content,html=False,to=None):
   qmail(fromName,content,subject,html=html,to=to)
 
 def echo(str):
+  import os
+
   os.system("echo '%s'"%str)
 
 def pickledump(var,path):
+  import pickle
+
   with open(path,'wb') as f:
     pickle.dump(var,f)
 
 def pickleread(path,*args):
+  import pickle
+
   theback=args[0]
   try:
     with open(path,'rb') as f:
@@ -74,6 +76,8 @@ def pickleread(path,*args):
     return theback
 
 def execCmd(cmd):
+    import os
+
     r = os.popen(cmd)
     text = r.read()
     r.close()
@@ -107,6 +111,8 @@ def ping(host):
     Returns True if host (str) responds to a ping request.
     Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
     """
+    import platform    # For getting the operating system name
+    import subprocess  # For executing a shell command
 
     # Option for the number of packets as a function of
     param = '-n' if platform.system().lower()=='windows' else '-c'
@@ -156,6 +162,8 @@ def cookie2dic(rawdata):
   return cookies
 
 def getip(domain):
+  import dns.resolver
+
   answers = dns.resolver.resolve(domain, 'A')
   for answer in answers:
     return answer.to_text()
@@ -166,6 +174,10 @@ def bypassCC(session):
 passed=[]
 
 def pas(host,pw):
+  import requests
+  from bs4 import BeautifulSoup
+  from urllib.parse import urlparse
+
   s=requests.Session()
   bypassCC(s)
   s.verify=False
@@ -198,11 +210,15 @@ def pas(host,pw):
     print('已验证过')
 
 def tomd5(string):
+  import hashlib
+
   hl = hashlib.md5()
   hl.update(string.encode(encoding='utf-8'))
   return hl.hexdigest()
 
 def isnewday(path='isnewday.txt'):
+  import time
+
   today=time.strftime("%y%m%d", time.localtime())
   try:
     with open(path) as f:
