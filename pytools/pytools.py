@@ -201,3 +201,19 @@ def tomd5(string):
   hl = hashlib.md5()
   hl.update(string.encode(encoding='utf-8'))
   return hl.hexdigest()
+
+def isnewday(path='.'):
+  today=time.strftime("%y%m%d", time.localtime())
+  try:
+    with open('isnewday.txt') as f:
+      thatday=f.read()
+  except FileNotFoundError:
+    thatday=None
+  with open('isnewday.txt','w') as f:
+    f.write(today)
+  if today==thatday:
+    return False
+  elif thatday==None:
+    return None
+  else:
+    return True
