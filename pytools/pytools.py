@@ -202,14 +202,14 @@ def tomd5(string):
   hl.update(string.encode(encoding='utf-8'))
   return hl.hexdigest()
 
-def isnewday(path='.'):
+def isnewday(path='isnewday.txt'):
   today=time.strftime("%y%m%d", time.localtime())
   try:
-    with open('isnewday.txt') as f:
+    with open(path) as f:
       thatday=f.read()
   except FileNotFoundError:
     thatday=None
-  with open('isnewday.txt','w') as f:
+  with open(path,'w') as f:
     f.write(today)
   if today==thatday:
     return False
