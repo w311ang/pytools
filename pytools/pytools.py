@@ -43,6 +43,7 @@ def jmail(fromName,subject,content,html=False,to=None):
   import requests
   from pytools import _aes as aes
   import json
+  import os
 
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
