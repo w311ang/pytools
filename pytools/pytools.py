@@ -230,7 +230,7 @@ def isnewday(path='isnewday.txt'):
     f.write(today)
   if today==thatday:
     return False
-  elif thatday==None:
-    return None
+  #elif thatday==None:
+  #  return None
   else:
     return True
