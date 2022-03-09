@@ -237,10 +237,15 @@ def isnewday(path='isnewday.txt'):
 
 def addpush(content):
   import requests
+  import os
+
+  apiurl=os.getenv('pushapiurl')
+  pw=os.getenv('pushpw')
+
   from pytools.pytools import bypassCC
   s=requests.Session()
   bypassCC(s)
-  with s.get(pushapiurl+'/add',params={'content':content}) as resp:
+  with s.get(apiurl+'/add',params={'content':content,'pw':pw}) as resp:
     try:
       json=resp.json()
     except:
