@@ -234,3 +234,19 @@ def isnewday(path='isnewday.txt'):
   #  return None
   else:
     return True
+
+def addpush(content):
+  import requests
+  from pytools.pytools import bypassCC
+  s=requests.Session()
+  bypassCC(s)
+  with s.get(pushapiurl+'/add',params={'content':content}) as resp:
+    try:
+      json=resp.json()
+    except:
+      raise Exception('json解析失败: '+resp.text)
+    status=json['status']
+    if status=='OK':
+      return status
+    else:
+      raise Exception('推送失败: '+json)
