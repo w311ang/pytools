@@ -261,4 +261,5 @@ def addpush(content):
 def serverchen(title,content,key=os.environ['sckey']):
   import httpx
   resp=httpx.get('https://sctapi.ftqq.com/%s.send'%key,params={'title':title,'desp':content}).json()
+  assert resp['code']==0, resp['message']
   return resp
