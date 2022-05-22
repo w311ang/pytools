@@ -1,3 +1,5 @@
+import os
+
 qpass=''
 qfrom=''
 
@@ -256,7 +258,7 @@ def addpush(content):
     else:
       raise Exception('推送失败: '+json)
 
-def serverchen(key,title,content):
+def serverchen(title,content,key=os.environ['sckey']):
   import httpx
   resp=httpx.get('https://sctapi.ftqq.com/%s.send'%key,params={'title':title,'desp':content}).json()
   return resp
