@@ -15,6 +15,7 @@ setup(name='MyPytools',
         'psutil',
         'beautifulsoup4',
         'lxml',
-        'dnspython'
+        'dnspython',
+        'httpx'
       ]
       )
