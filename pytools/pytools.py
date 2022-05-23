@@ -1,5 +1,3 @@
-import os
-
 qpass=''
 qfrom=''
 
@@ -258,8 +256,10 @@ def addpush(content):
     else:
       raise Exception('推送失败: '+json)
 
-def serverchen(title,content,key=os.environ['sckey']):
+def serverchen(title,content,key=''):
+  import os
   import httpx
+  key=os.environ['sckey'] if not key else key
   resp=httpx.get('https://sctapi.ftqq.com/%s.send'%key,params={'title':title,'desp':content}).json()
   assert resp['code']==0, resp['message']
   return resp
