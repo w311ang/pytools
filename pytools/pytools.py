@@ -183,7 +183,7 @@ def pas(host,pw):
   bypassCC(s)
   s.verify=False
   requests.packages.urllib3.disable_warnings()
-  with s.get('http://'+host) as web:
+  with s.get('https://'+host) as web:
     hometext=web.text
     homeurl=web.url
     urlp=urlparse(homeurl)
