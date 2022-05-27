@@ -191,8 +191,8 @@ def pas(host,pw):
     url='https://%s:%s'%(domain,port)
   try:
     hometext=s.get(url).text
-  except nothing:
-    pass
+  except urllib3.exceptions.ProtocolError:
+    print('https连接错误，可能已验证')
 
   if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in hometext):
     with s.get(url) as web:
