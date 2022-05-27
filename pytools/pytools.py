@@ -264,10 +264,10 @@ def serverchen(title,content,key=''):
   assert resp['code']==0, resp['message']
   return resp
 
-def toBase64(s):
+def base64encode(s):
   import base64
   return base64.b64encode(s.encode('utf-8'))
 
-def Base64to(b):
+def base64decode(b):
   import base64
   return base64.b64decode(b).decode('utf-8')
