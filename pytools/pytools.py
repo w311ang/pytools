@@ -183,14 +183,17 @@ def pas(host,pw):
   bypassCC(s)
   s.verify=False
   requests.packages.urllib3.disable_warnings()
-  with s.get('https://'+host) as web:
-    hometext=web.text
+  with s.get('http://'+host) as web:
     homeurl=web.url
     urlp=urlparse(homeurl)
     domain=urlp.hostname
     port=urlp.port
     url='https://%s:%s'%(domain,port)
-    
+  try:
+    hometext=s.get(url).text
+  except nothing:
+    pass
+
   if (not url in passed) and ('<title>SakuraFrp 访问认证</title>' in hometext):
     with s.get(url) as web:
       text=web.text
