@@ -274,3 +274,9 @@ def base64encode(s):
 def base64decode(b):
   import base64
   return base64.b64decode(b).decode('utf-8')
+
+def find_nearest(array, value):
+    import numpy as np
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return array[idx]
