@@ -137,14 +137,19 @@ def get_pid(name):
             re.append(pid.pid)
     return re
 
-def kill(name):
+def kill(name,force=False):
     import psutil
+    import os
 
     pid=get_pid(name)
     if pid!=[]:
         for i in pid:
-            p=psutil.Process(i)
-            p.terminate()
+            if not force:
+              p=psutil.Process(i)
+              p.terminate()
+            if force:
+              r=os.popen('taskkill /f /pid %s'%i).read()
+              return r
     else:
         return 'not running'
 
