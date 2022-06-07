@@ -148,7 +148,7 @@ def kill(name,force=False):
               p=psutil.Process(i)
               p.terminate()
             else:
-              r=os.popen('taskkill /f /pid %s'%i).read()
+              r=os.popen('taskkill /f /pid %s 2>&1'%i).read()
               return r
     else:
         return 'not running'
