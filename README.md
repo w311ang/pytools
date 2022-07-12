@@ -77,7 +77,7 @@ jobs:
           max_attempts: 5
           command: |
             proxychains python -u 
-        on_retry_command: sudo systemctl restart shadowsocks-libev-local@client; sleep 5s
+          on_retry_command: sudo systemctl restart shadowsocks-libev-local@client; sleep 5s
       - uses: gautamkrishnar/keepalive-workflow@master
 ```
 
