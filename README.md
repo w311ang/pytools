@@ -70,7 +70,7 @@ jobs:
           redirect: ${{ secrets.frp_redirect }}
       - name: Run
         env:
-          
+          : ${{ secrets. }}
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 10
