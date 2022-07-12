@@ -64,7 +64,7 @@ def pickledump(var,path):
   import pickle
   import os
 
-  with open(os.path.split(os.path.realpath(__file__))[0]+path,'wb') as f:
+  with open(os.path.split(os.path.realpath(sys.argv[0]))[0]+path,'wb') as f:
     pickle.dump(var,f)
 
 def pickleread(path,*args):
@@ -73,7 +73,7 @@ def pickleread(path,*args):
 
   theback=args[0]
   try:
-    with open(os.path.split(os.path.realpath(__file__))[0]+path,'rb') as f:
+    with open(os.path.split(os.path.realpath(sys.argv[0]))[0]+path,'rb') as f:
       return pickle.load(f)
   except FileNotFoundError:
     return theback
