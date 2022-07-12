@@ -152,6 +152,7 @@ jobs:
             build-
       - name: Run
         env:
+          on: ${{ github.event_name }}
           jmail: ${{ secrets.jmail_password }}
           : ${{ secrets. }}
         uses: nick-invision/retry@v2
