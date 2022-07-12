@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='MyPytools',
-      version='2.4.1',
+      version='2.4.2',
       description='My Python utility',
       author='w311ang',
       author_email='w311angw311ang@gmail.com',
