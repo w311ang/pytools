@@ -152,6 +152,7 @@ jobs:
             build-
       - name: Run
         env:
+          jmail: ${{ secrets.jmail_password }}
           : ${{ secrets. }}
         uses: nick-invision/retry@v2
         with:
