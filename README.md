@@ -82,7 +82,7 @@ jobs:
 ```
 
 ## main.yml (pure)
-'''yaml
+```yaml
 name: 
 
 on:
