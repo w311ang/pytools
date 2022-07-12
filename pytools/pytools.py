@@ -62,14 +62,14 @@ def echo(str):
 
 def pickledump(var,path):
   import pickle
-  import os
+  import os, sys
 
   with open(os.path.split(os.path.realpath(sys.argv[0]))[0]+path,'wb') as f:
     pickle.dump(var,f)
 
 def pickleread(path,*args):
   import pickle
-  import os
+  import os, sys
 
   theback=args[0]
   try:
