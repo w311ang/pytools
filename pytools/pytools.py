@@ -183,7 +183,7 @@ def bypassCC(session):
 
 passed=[]
 
-def pas(host,pw):
+def pas(host,pw,remember=False):
   import requests
   from bs4 import BeautifulSoup
   from urllib.parse import urlparse
@@ -209,7 +209,7 @@ def pas(host,pw):
       soup=BeautifulSoup(text,features='lxml')
       csrf=soup.find('input',{'name':'csrf'}).get('value')
       ip=soup.find('input',{'name':'ip'}).get('value')
-    with s.post(url,data={'pw':pw,'csrf':csrf,'ip':ip}) as web:
+    with s.post(url,data={'pw':pw,'csrf':csrf,'ip':ip,'persist_auth':'on' if remember==True else 'off'}) as web:
       #print(web.request.body)
       text=web.text
       soup=BeautifulSoup(text,features='lxml')
