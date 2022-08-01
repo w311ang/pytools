@@ -304,6 +304,6 @@ def startThread(target,args,*process,force=False):
   isAlive==False or force==True:
     p=Process(target=target, args=args)
     p.start
-    rerurn p
+    return p
   else:
     pass
