@@ -289,3 +289,13 @@ def find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.abs(array - value)).argmin()
     return array[idx]
+
+def startThread(process,target,args,force=False):
+  from multiprocessing import Process
+
+  if not process.is_alive() or force==True:
+    p=Process(target=target, args=args)
+    p.start
+    rerurn p
+  else:
+    pass
