@@ -290,10 +290,18 @@ def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return array[idx]
 
-def startThread(process,target,args,force=False):
+def startThread(target,args,*process,force=False):
   from multiprocessing import Process
 
-  if not process.is_alive() or force==True:
+  process=process[0] if len(process)>=1 else None
+  isProcessType=True
+  try:
+    isAlive=process.is_alive()
+  except AttributeError:
+    isProcessType=False
+
+  if process==None or isProcessType==False or \
+  isAlive==False or force==True:
     p=Process(target=target, args=args)
     p.start
     rerurn p
