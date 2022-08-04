@@ -17,6 +17,6 @@ setup(name='MyPytools',
         'lxml',
         'dnspython',
         'httpx',
-        'pywin32'
+        'pywin32' if os.name == "nt" else ''
       ]
       )
