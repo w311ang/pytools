@@ -289,3 +289,18 @@ def find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.abs(array - value)).argmin()
     return array[idx]
+
+# https://danielkaes.wordpress.com/2009/06/04/how-to-catch-kill-events-with-python/
+# https://stackoverflow.com/questions/25104119/python-save-sets-to-file-on-windows-shutdown
+def set_exit_handler(func):
+    import os, sys
+    if os.name == "nt":
+        try:
+            import win32api
+            win32api.SetConsoleCtrlHandler(func, True)
+        except ImportError:
+            version = “.”.join(map(str, sys.version_info[:2]))
+            raise Exception(”pywin32 not installed for Python ” + version)
+    else:
+        import signal
+        signal.signal(signal.SIGTERM, func)
