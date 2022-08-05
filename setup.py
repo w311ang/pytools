@@ -3,8 +3,11 @@
 from distutils.core import setup
 import os
 
+with open('version.txt') as f:
+  version=f.read().splitlines()[0]
+
 setup(name='MyPytools',
-      version='2.5.8',
+      version=version,
       description='My Python utility',
       author='w311ang',
       author_email='w311angw311ang@gmail.com',
