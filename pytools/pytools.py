@@ -304,3 +304,11 @@ def set_exit_handler(func):
     else:
         import signal
         signal.signal(signal.SIGTERM, func)
+
+def getpath(file):
+    import sys
+    if getattr(sys, 'frozen', False):     
+        path = os.path.join(sys._MEIPASS, file))
+    else:
+        path = file
+    return path
