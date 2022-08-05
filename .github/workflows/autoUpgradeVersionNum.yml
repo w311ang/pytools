@@ -18,7 +18,7 @@ jobs:
       - name: Edit version
         shell: python
         run: |
-          with open('version.txt','wr') as f:
+          with open('version.txt','rw') as f:
             version=f.read().splitlines()[0]
             version=str(int(version.replace('.',''))+1)
             version='.'.join((version[:len(version)-2],version[-2],version[-1]))
