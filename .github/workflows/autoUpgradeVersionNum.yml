@@ -1,0 +1,36 @@
+name: Auto Upgrade Version Number
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Edit version
+        shell: python
+        run: |
+          with open('version.txt','wr') as f:
+            version=f.read().splitlines()[0]
+            version=str(int(version.replace('.',''))+1)
+            version='.'.join((version[:len(version)-2],version[-2],version[-1]))
+            f.write(version)
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add version.txt
+          git diff-index --quiet HEAD || git commit -m "Upgrade version" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
