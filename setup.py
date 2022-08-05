@@ -4,7 +4,7 @@ from distutils.core import setup
 import os
 
 setup(name='MyPytools',
-      version='2.5.6',
+      version='2.5.7',
       description='My Python utility',
       author='w311ang',
       author_email='w311angw311ang@gmail.com',
