@@ -18,10 +18,11 @@ jobs:
       - name: Edit version
         shell: python
         run: |
-          with open('version.txt','rw') as f:
+          with open('version.txt') as f:
             version=f.read().splitlines()[0]
-            version=str(int(version.replace('.',''))+1)
-            version='.'.join((version[:len(version)-2],version[-2],version[-1]))
+          version=str(int(version.replace('.',''))+1)
+          version='.'.join((version[:len(version)-2],version[-2],version[-1]))
+          with open('version.txt','w') as f:
             f.write(version)
       - name: Commit files
         run: |
