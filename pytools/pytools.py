@@ -310,7 +310,8 @@ def getpath(file):
     # https://stackoverflow.com/questions/53587322/how-do-i-include-files-with-pyinstaller
     import sys
     if getattr(sys, 'frozen', False):     
-        path = os.path.join(sys._MEIPASS, file))
+        path = os.path.join(sys._MEIPASS, file)
+
     else:
         path = file
     return path
