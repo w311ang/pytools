@@ -293,7 +293,6 @@ def find_nearest(array, value):
 def set_exit_handler(func):
     # https://danielkaes.wordpress.com/2009/06/04/how-to-catch-kill-events-with-python/
     # https://stackoverflow.com/questions/25104119/python-save-sets-to-file-on-windows-shutdown
-
     import os, sys
     if os.name == "nt":
         try:
@@ -309,7 +308,6 @@ def set_exit_handler(func):
 
 def getpath(file):
     # https://stackoverflow.com/questions/53587322/how-do-i-include-files-with-pyinstaller
-
     import sys
     if getattr(sys, 'frozen', False):     
         path = os.path.join(sys._MEIPASS, file))
