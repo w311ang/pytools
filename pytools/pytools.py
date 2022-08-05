@@ -311,7 +311,6 @@ def getpath(file):
     import sys
     if getattr(sys, 'frozen', False):     
         path = os.path.join(sys._MEIPASS, file)
-
     else:
         path = file
     return path
