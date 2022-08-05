@@ -290,9 +290,10 @@ def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return array[idx]
 
-# https://danielkaes.wordpress.com/2009/06/04/how-to-catch-kill-events-with-python/
-# https://stackoverflow.com/questions/25104119/python-save-sets-to-file-on-windows-shutdown
 def set_exit_handler(func):
+    # https://danielkaes.wordpress.com/2009/06/04/how-to-catch-kill-events-with-python/
+    # https://stackoverflow.com/questions/25104119/python-save-sets-to-file-on-windows-shutdown
+
     import os, sys
     if os.name == "nt":
         try:
@@ -305,7 +306,10 @@ def set_exit_handler(func):
         import signal
         signal.signal(signal.SIGTERM, func)
 
+
 def getpath(file):
+    # https://stackoverflow.com/questions/53587322/how-do-i-include-files-with-pyinstaller
+
     import sys
     if getattr(sys, 'frozen', False):     
         path = os.path.join(sys._MEIPASS, file))
