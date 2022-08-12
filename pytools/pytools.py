@@ -141,7 +141,7 @@ def get_pid(name):
             re.append(pid.pid)
     return re
 
-def kill(name,force=False):
+def kill(name,force=True):
     import psutil
     import os
 
