@@ -320,6 +320,7 @@ def checkPgmPortOpen(pgmName, port):
     from pytools.pytools import get_pid
     import psutil
 
+    port=int(port)
     for pid in get_pid(pgmName):
         proc = psutil.Process(pid)
         for i in proc.connections():
