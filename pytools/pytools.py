@@ -315,3 +315,14 @@ def getpath(file):
     else:
         path = file
     return path
+
+def checkPgmPortOpen(pgmName, port):
+    from pytools.pytools import get_pid
+    import psutil
+
+    for pid in get_pid(pgmName):
+        proc = psutil.Process(pid)
+        if port in proc.connections():
+            return True
+        else:
+            return False
