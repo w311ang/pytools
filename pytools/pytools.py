@@ -322,7 +322,7 @@ def checkPgmPortOpen(pgmName, port):
 
     for pid in get_pid(pgmName):
         proc = psutil.Process(pid)
-        if port in proc.connections():
-            return True
-        else:
-            return False
+        for i in proc.connections():
+            if i.laddr.port==port:
+                return True
+    return False
