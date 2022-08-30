@@ -341,6 +341,7 @@ def get_parent_process(ok_names, limit=10):
     '''
 
     import psutil
+    import os
 
     depth = 0
     this_proc = psutil.Process(os.getpid())
