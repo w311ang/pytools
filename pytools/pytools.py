@@ -351,7 +351,10 @@ def get_parent_process(ok_names, limit=10):
         if next_proc.name() in ok_names:
             return True, next_proc.name()
 
-        next_proc = psutil.Process(next_proc.ppid())
+        try:
+            next_proc = psutil.Process(next_proc.ppid())
+        except psutil.NoSuchProcess:
+            break
         depth += 1
 
     return False, parent.name()
