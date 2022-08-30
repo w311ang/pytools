@@ -348,9 +348,9 @@ def get_parent_process(ok_names, limit=10):
     while depth < limit:
 
         if next_proc.name() in ok_names:
-            return next_proc.name()
+            return True, next_proc.name()
 
         next_proc = psutil.Process(next_proc.ppid())
         depth += 1
 
-    return parent.name()
+    return False, parent.name()
