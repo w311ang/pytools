@@ -332,3 +332,25 @@ def sec2time(seconds):
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
     return "%d:%02d:%02d" % (h, m, s)
+
+def get_parent_process(ok_names, limit=10):
+    '''Walk up the process tree until we find a process we like.
+
+    Arguments:
+        ok_names: Return the first one of these processes that we find
+    '''
+
+    import psutil
+
+    depth = 0
+    this_proc = psutil.Process(os.getpid())
+    next_proc = parent = psutil.Process(this_proc.ppid())
+    while depth < limit:
+
+        if next_proc.name() in ok_names:
+            return next_proc.name()
+
+        next_proc = psutil.Process(next_proc.ppid())
+        depth += 1
+
+    return parent.name()
