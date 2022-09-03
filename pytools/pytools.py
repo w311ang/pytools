@@ -364,6 +364,7 @@ def ifPowerOf2(n):
 
 def ifOnePlusTwoPlusThree(n):
     count=1 #range从0开始
+    sum=0
     while sum<n:
       count+=1
       sum=0
