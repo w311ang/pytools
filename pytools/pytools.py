@@ -361,3 +361,15 @@ def get_parent_process(ok_names, limit=10):
 
 def ifPowerOf2(n):
     return (n & (n-1) == 0) and n != 0
+
+def ifOnePlusTwoPlusThree(n):
+    count=1 #range从0开始
+    while sum<n:
+      count+=1
+      sum=0
+      for i in range(1,count):
+          sum+=i
+    if sum>n:
+        return False
+    elif sum==n:
+        return True
