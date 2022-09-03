@@ -359,5 +359,5 @@ def get_parent_process(ok_names, limit=10):
 
     return False, parent.name()
 
-def ifPowerOf2:
+def ifPowerOf2(n):
     return (n & (n-1) == 0) and n != 0
