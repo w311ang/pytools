@@ -358,3 +358,6 @@ def get_parent_process(ok_names, limit=10):
         depth += 1
 
     return False, parent.name()
+
+def ifPowerOf2:
+    return (n & (n-1) == 0) and n != 0
