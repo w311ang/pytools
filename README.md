@@ -147,9 +147,9 @@ jobs:
         with:
           path: |
             ./
-          key: build-${{ github.run_id }}
+          key: ${{ github.job }}-${{ github.run_id }}
           restore-keys: |
-            build-
+            ${{ github.job }}-
       - name: Run
         env:
           on: ${{ github.event_name }}
