@@ -21,6 +21,7 @@ setup(name='MyPytools',
         'lxml',
         'dnspython',
         'httpx',
-        'pywin32' if os.name == "nt" else ''
+        'pywin32' if os.name == "nt" else '',
+        'Markdown'
       ]
       )
