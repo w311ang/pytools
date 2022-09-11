@@ -36,7 +36,7 @@ def qmail(fromName,content,subject,html=False,to=None):
   mail()
   print('邮件已发送')
 
-def jmail(fromName,subject,content,html=False,to=None):
+def jmail(fromName,subject,content,html=False,to=None,md=False):
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
@@ -44,6 +44,7 @@ def jmail(fromName,subject,content,html=False,to=None):
   from pytools import _aes as aes
   import json
   import os
+  from markdown import markdown
 
   key=os.getenv('jmail')
   js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
@@ -53,6 +54,11 @@ def jmail(fromName,subject,content,html=False,to=None):
     rqpass=js['qpass']
     rqfrom=js['qfrom']
     update(qpass=rqpass,qfrom=rqfrom)
+
+  if md==True:
+    content=content.replace('\n','\n\n')
+    content=markdown(content)
+
   qmail(fromName,content,subject,html=html,to=to)
 
 def echo(str):
