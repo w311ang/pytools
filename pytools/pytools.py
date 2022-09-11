@@ -92,7 +92,8 @@ def jsondump(var,path):
 
   openpath=os.path.join(os.path.split(os.path.realpath(sys.argv[0]))[0],path)
   with open(openpath,'wb') as f:
-    json.dumps(var,f)
+    js=json.dumps(var)
+    f.write(js)
 
 def jsonread(path,*args):
   import json
