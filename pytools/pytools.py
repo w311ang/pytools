@@ -91,8 +91,8 @@ def jsondump(var,path):
   import os, sys
 
   openpath=os.path.join(os.path.split(os.path.realpath(sys.argv[0]))[0],path)
+  js=json.dumps(var)
   with open(openpath,'wb') as f:
-    js=json.dumps(var)
     f.write(js)
 
 def jsonread(path,*args):
@@ -104,7 +104,7 @@ def jsonread(path,*args):
   try:
     with open(openpath,'rb') as f:
       text=f.read()
-      return json.loads(text)
+    return json.loads(text)
   except FileNotFoundError:
     return theback
 
