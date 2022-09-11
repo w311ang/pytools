@@ -80,6 +80,27 @@ def pickleread(path,*args):
   except FileNotFoundError:
     return theback
 
+def jsondump(var,path):
+  import json
+  import os, sys
+
+  openpath=os.path.join(os.path.split(os.path.realpath(sys.argv[0]))[0],path)
+  with open(openpath,'wb') as f:
+    json.dumps(var,f)
+
+def jsonread(path,*args):
+  import json
+  import os, sys
+
+  theback=args[0]
+  openpath=os.path.join(os.path.split(os.path.realpath(sys.argv[0]))[0],path)
+  try:
+    with open(openpath,'rb') as f:
+      text=f.read()
+      return json.loads(text)
+  except FileNotFoundError:
+    return theback
+
 def execCmd(cmd):
     import os
 
