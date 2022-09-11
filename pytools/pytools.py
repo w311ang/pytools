@@ -58,6 +58,7 @@ def jmail(fromName,subject,content,html=False,to=None,md=False):
   if md==True:
     content=content.replace('\n','\n\n')
     content=markdown(content)
+    html=True
 
   qmail(fromName,content,subject,html=html,to=to)
 
