@@ -409,7 +409,8 @@ def ifPgmRunning(ok_name):
 
     pids=psutil.pids()
     for pid in pids:
-        name=pid.name()
+        p=psutil.Process(pid)
+        name=p.name()
         if name==ok_name:
            return True
     return False
