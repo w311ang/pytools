@@ -114,7 +114,7 @@ def execCmd(cmd,viewErr=False):
     import io
 
     stderr=None if viewErr else subprocess.PIPE
-    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=stderr)
+    proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=stderr)
     proc.wait()
     stream_stdout = io.TextIOWrapper(proc.stdout, encoding='utf-8')
     stream_stderr = io.TextIOWrapper(proc.stderr, encoding='utf-8')
