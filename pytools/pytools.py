@@ -109,13 +109,20 @@ def jsonread(path,*args):
   except FileNotFoundError:
     return theback
 
-def execCmd(cmd):
-    import os
+def execCmd(cmd,viewErr=False):
+    import subprocess
+    import io
 
-    r = os.popen(cmd)
-    text = r.read()
-    r.close()
-    return text
+    stderr=None if viewErr else subprocess.PIPE
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=stderr)
+    proc.wait()
+    stream_stdout = io.TextIOWrapper(proc.stdout, encoding='utf-8')
+    stream_stderr = io.TextIOWrapper(proc.stderr, encoding='utf-8')
+      
+    str_stdout = str(stream_stdout.read())
+    str_stderr = str(stream_stderr.read())
+
+    return str_stdout
 
 def getListOfProcessSortedByCpu():
     '''
