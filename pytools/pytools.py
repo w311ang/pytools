@@ -403,3 +403,14 @@ def ifOnePlusTwoPlusThree(n):
         return False
     elif sum==n:
         return True
+
+def ifPgmRunning(ok_name):
+    import psutil
+
+    pids=psutil.pids()
+    for pid in pids:
+        name=pid.name()
+        if name==ok_name:
+           return True
+           break
+    return False
