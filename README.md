@@ -37,6 +37,11 @@ pytools.jmail('fromName','subject','content')
 from pytools import echo as print
 ```
 
+## Install without git
+```bash
+git install --upgrade https://github.com/w311ang/pytools/archive/refs/heads/package.zip
+```
+
 ## main.yml
 ```yaml
 name: 
