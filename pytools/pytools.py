@@ -412,5 +412,4 @@ def ifPgmRunning(ok_name):
         name=pid.name()
         if name==ok_name:
            return True
-           break
     return False
