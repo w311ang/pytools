@@ -110,6 +110,7 @@ def jsonread(path,*args):
     return theback
 
 def execCmd(cmd,viewErr=False):
+    # https://blog.csdn.net/Ls4034/article/details/89161157
     import subprocess
     import io
 
