@@ -117,11 +117,19 @@ def execCmd(cmd,viewErr=False):
     stderr=None if viewErr else subprocess.PIPE
     proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=stderr)
     proc.wait()
-    stream_stdout = io.TextIOWrapper(proc.stdout, encoding='utf-8')
-    stream_stderr = io.TextIOWrapper(proc.stderr, encoding='utf-8')
-      
-    str_stdout = str(stream_stdout.read())
-    str_stderr = str(stream_stderr.read())
+
+    try:
+        stream_stdout = io.TextIOWrapper(proc.stdout, encoding='utf-8')
+        stream_stderr = io.TextIOWrapper(proc.stderr, encoding='utf-8')
+
+        str_stdout = str(stream_stdout.read())
+        str_stderr = str(stream_stderr.read())
+    except UnicodeDecodeError:
+        stream_stdout = io.TextIOWrapper(proc.stdout, encoding='ascii')
+        stream_stderr = io.TextIOWrapper(proc.stderr, encoding='ascii')
+
+        str_stdout = str(stream_stdout.read())
+        str_stderr = str(stream_stderr.read())
 
     return str_stdout
 
