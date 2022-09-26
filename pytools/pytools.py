@@ -118,8 +118,8 @@ def execCmd(cmd,viewErr=False,encoding='utf-8'):
     proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=stderr)
     proc.wait()
 
-    stream_stdout = io.TextIOWrapper(proc.stdout, encoding=encoding)
-    stream_stderr = io.TextIOWrapper(proc.stderr, encoding=encoding)
+    stream_stdout = io.TextIOWrapper(proc.stdout)
+    stream_stderr = io.TextIOWrapper(proc.stderr)
 
     str_stdout = str(stream_stdout.read())
     str_stderr = str(stream_stderr.read())
