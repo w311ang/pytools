@@ -109,7 +109,7 @@ def jsonread(path,*args):
   except FileNotFoundError:
     return theback
 
-def execCmd(cmd,viewErr=False,encoding='ascii'):
+def execCmd(cmd,viewErr=False,encoding='utf-8'):
     # https://blog.csdn.net/Ls4034/article/details/89161157
     import subprocess
     import io
