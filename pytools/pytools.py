@@ -109,7 +109,7 @@ def jsonread(path,*args):
   except FileNotFoundError:
     return theback
 
-def execCmd(cmd,viewErr=False):
+def execCmd(cmd,viewErr=False,encoding='ascii'):
     # https://blog.csdn.net/Ls4034/article/details/89161157
     import subprocess
     import io
@@ -118,18 +118,11 @@ def execCmd(cmd,viewErr=False):
     proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=stderr)
     proc.wait()
 
-    try:
-        stream_stdout = io.TextIOWrapper(proc.stdout, encoding='utf-8')
-        stream_stderr = io.TextIOWrapper(proc.stderr, encoding='utf-8')
+    stream_stdout = io.TextIOWrapper(proc.stdout, encoding=encoding)
+    stream_stderr = io.TextIOWrapper(proc.stderr, encoding=encoding)
 
-        str_stdout = str(stream_stdout.read())
-        str_stderr = str(stream_stderr.read())
-    except UnicodeDecodeError:
-        stream_stdout = io.TextIOWrapper(proc.stdout, encoding='ascii')
-        stream_stderr = io.TextIOWrapper(proc.stderr, encoding='ascii')
-
-        str_stdout = str(stream_stdout.read())
-        str_stderr = str(stream_stderr.read())
+    str_stdout = str(stream_stdout.read())
+    str_stderr = str(stream_stderr.read())
 
     return str_stdout
 
