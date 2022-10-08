@@ -113,10 +113,12 @@ def execCmd(cmd,viewErr=False):
     import subprocess
 
     stderr=None if viewErr else subprocess.PIPE
-    proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=stderr, text=True)
+    cmd=cmd.split()
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=stderr, text=True)
     try:
       outs, errs = proc.communicate(timeout=15)
     except TimeoutExpired:
+      print('%s: TimeoutExpired'%cmd[0])
       proc.kill()
       outs, errs = proc.communicate()
 
