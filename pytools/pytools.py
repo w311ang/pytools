@@ -110,21 +110,17 @@ def jsonread(path,*args):
     return theback
 
 def execCmd(cmd,viewErr=False):
-    # https://blog.csdn.net/Ls4034/article/details/89161157
     import subprocess
-    import io
 
     stderr=None if viewErr else subprocess.PIPE
-    proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=stderr)
-    proc.wait()
+    proc = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=stderr, text=True)
+    try:
+      outs, errs = proc.communicate(timeout=15)
+    except TimeoutExpired:
+      proc.kill()
+      outs, errs = proc.communicate()
 
-    stream_stdout = io.TextIOWrapper(proc.stdout)
-    stream_stderr = io.TextIOWrapper(proc.stderr)
-
-    str_stdout = str(stream_stdout.read())
-    str_stderr = str(stream_stderr.read())
-
-    return str_stdout
+    return outs
 
 def getListOfProcessSortedByCpu():
     '''
