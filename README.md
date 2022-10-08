@@ -59,10 +59,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: 3.10
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -103,10 +103,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: 3.10
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -133,10 +133,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: 3.10
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -152,9 +152,9 @@ jobs:
         with:
           path: |
             ./
-          key: ${{ github.job }}-${{ github.run_id }}
+          key: ${{ github.workflow }}-${{ github.run_id }}
           restore-keys: |
-            ${{ github.job }}-
+            ${{ github.workflow }}-
       - name: Run
         env:
           on: ${{ github.event_name }}
