@@ -148,7 +148,7 @@ jobs:
           password: ${{ secrets.frp_auth }}
           redirect: ${{ secrets.frp_redirect }}
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ./
