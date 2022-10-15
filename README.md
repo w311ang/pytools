@@ -127,6 +127,11 @@ on:
   schedule:
     - cron: 0 12 * * *
   workflow_dispatch:
+    inputs:
+      cache:
+        description: 'cache'
+        required: false
+        default: 'true'
 
 jobs:
   build:
@@ -148,6 +153,7 @@ jobs:
           password: ${{ secrets.frp_auth }}
           redirect: ${{ secrets.frp_redirect }}
       - name: Cache
+        if: github.event.inputs.cache != 'false'
         uses: actions/cache@v3
         with:
           path: |
