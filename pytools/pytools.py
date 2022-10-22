@@ -423,7 +423,7 @@ def ifPgmRunning(ok_name):
     return False
 
 def secretlog(secret):
-  from _aes import AESCipher
+  from pytools._aes import AESCipher
   import os
 
   key=os.environ['jmail']
