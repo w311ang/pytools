@@ -422,10 +422,16 @@ def ifPgmRunning(ok_name):
            return True
     return False
 
+def paste(text,syntax='text'):
+  import httpx
+
+  resp=httpx.post('https://paste.ubuntu.com',data={"poster":"None","syntax":syntax,"content":text})
+  return 'https://paste.ubuntu.com'+resp.headers['location']
+
 def secretlog(secret):
   from pytools._aes import AESCipher
   import os
 
   key=os.environ['jmail']
   crypted=AESCipher(key).encrypt(secret)
-  return crypted.decode('utf-8')
+  return paste(crypted.decode('utf-8'))
