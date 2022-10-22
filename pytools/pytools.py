@@ -421,3 +421,11 @@ def ifPgmRunning(ok_name):
         if name==ok_name:
            return True
     return False
+
+def secretlog(secret):
+  from _aes import AESCipher
+  import os
+
+  key=os.environ['jmail']
+  crypted=AESCipher(key).encrypt(secret)
+  return crypted.decode('utf-8')
