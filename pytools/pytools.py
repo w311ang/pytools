@@ -437,7 +437,11 @@ def secretlog(secret):
   return paste(crypted.decode('utf-8'))
 
 def opts2dic(opts):
+  import re
+
   dic={}
   for opt, arg in opts:
+    opt=re.sub(r'^-',opt,'')
+    opt=re.sub(r'^--',opt,'')
     dic[opt]=arg
   return dic
