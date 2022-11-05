@@ -435,3 +435,9 @@ def secretlog(secret):
   key=os.environ['jmail']
   crypted=AESCipher(key).encrypt(secret)
   return paste(crypted.decode('utf-8'))
+
+def opts2dic(opts):
+  dic={}
+  for opt, arg in opts:
+      dic[opt]=arg
+  return dic
