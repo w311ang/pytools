@@ -441,7 +441,7 @@ def opts2dic(opts):
 
   dic={}
   for opt, arg in opts:
-    opt=re.sub(r'^-',opt,'')
     opt=re.sub(r'^--',opt,'')
+    opt=re.sub(r'^-',opt,'')
     dic[opt]=arg
   return dic
