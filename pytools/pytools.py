@@ -439,5 +439,5 @@ def secretlog(secret):
 def opts2dic(opts):
   dic={}
   for opt, arg in opts:
-      dic[opt]=arg
+    dic[opt]=arg
   return dic
