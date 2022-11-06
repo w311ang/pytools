@@ -20,9 +20,9 @@ class AESCipher(object):
         enc = base64.b64decode(enc)
         iv = enc[:AES.block_size]
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        decryption = self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
+        dec = self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
         if base64:
-            return base64.b64decode(decryption).decode('utf-8')
+            return base64.b64decode(dec).decode('utf-8')
         else:
             return decryption
 
