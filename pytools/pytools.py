@@ -1,3 +1,5 @@
+import os
+
 qpass=''
 qfrom=''
 
@@ -445,3 +447,21 @@ def opts2dic(opts):
     opt=re.sub(r'^-',opt,'')
     dic[opt]=arg
   return dic
+
+def tgsend(msg,token=os.getenv('tgtoken'),chatid=os.getenv('tgchatid')):
+  import httpx
+
+  resp=httpx.post(f'https://api.telegram.org/bot{token}/sendMessage',
+    data={
+      'disable_web_page_preview':'true',
+      'parse_mode':'Markdown',
+      'chat_id':chatid,
+      'text':msg
+    }
+  )
+  json=resp.json()
+  ok=json['ok']
+  if not ok:
+    raise Exception(f'发送Telegram失败!\n{json}')
+  else:
+    print('发送Telegram成功')
