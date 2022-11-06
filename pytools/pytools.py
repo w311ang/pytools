@@ -316,7 +316,7 @@ def serverchen(title,content,key=''):
 
 def base64encode(s):
   import base64
-  return base64.b64encode(s.encode('utf-8'))
+  return base64.b64encode(s.encode('utf-8')).decode('utf-8')
 
 def base64decode(b):
   import base64
