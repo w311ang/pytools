@@ -24,7 +24,7 @@ class AESCipher(object):
         if base64:
             return b64.b64decode(dec).decode('utf-8')
         else:
-            return decryption
+            return dec
 
     def _pad(self, s):
         return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
