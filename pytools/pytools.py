@@ -465,3 +465,16 @@ def tgsend(msg,token=os.getenv('tgtoken'),chatid=os.getenv('tgchatid')):
     raise Exception(f'发送Telegram失败!\n{json}')
   else:
     print('发送Telegram成功')
+
+def isMpFork():
+  '''
+  Mp=Multiprocessing
+  '''
+  import os
+
+  if __name__=='__mp_main__':
+    return True
+  elif '--multiprocessing-fork' in os.argv:
+    return True
+  else:
+    return False
