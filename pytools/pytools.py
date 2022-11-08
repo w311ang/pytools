@@ -470,11 +470,11 @@ def isMpFork():
   '''
   Mp=Multiprocessing
   '''
-  import os
+  import sys
 
   if __name__=='__mp_main__':
     return True
-  elif '--multiprocessing-fork' in os.argv:
+  elif '--multiprocessing-fork' in sys.argv:
     return True
   else:
     return False
