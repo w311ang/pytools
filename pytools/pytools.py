@@ -49,7 +49,7 @@ def jmail(fromName,subject,content,html=False,to=None,md=False):
   from markdown import markdown
 
   key=os.getenv('jmail')
-  js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/main/jmail.txt').text
+  js=requests.get('https://raw.githubusercontent.com/w311ang/pytools/package/jmail.txt').text
   js=aes.AESCipher(key).decrypt(js)
   if (not qpass) and (not qfrom):
     js=json.loads(js)
