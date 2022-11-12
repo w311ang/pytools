@@ -481,3 +481,8 @@ def isMpFork():
 
 def termuxClipboardGet():
   return execCmd('termux-clipboard-get')
+
+def termuxClipboardSet(text):
+  import os
+
+  os.system("termux-clipboard-set '%s'"%text)
