@@ -478,3 +478,6 @@ def isMpFork():
     return True
   else:
     return False
+
+def termuxClipboardGet():
+  return execCmd('termux-clipboard-get')
