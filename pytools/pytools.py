@@ -185,13 +185,16 @@ def kill(name,force=True):
 
     pid=get_pid(name)
     if pid!=[]:
+        killDetail=''
         for i in pid:
             if not force:
               p=psutil.Process(i)
               p.terminate()
             else:
               r=os.popen('taskkill /f /pid %s 2>&1'%i).read()
-              return r
+              killDetail+=r
+        if force:
+            return killDetail
     else:
         return 'not running'
 
