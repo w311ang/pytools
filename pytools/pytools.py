@@ -486,3 +486,16 @@ def termuxClipboardSet(text):
   import os
 
   os.system("termux-clipboard-set '%s'"%text)
+
+def getopt(short,long,default):
+  import getopt
+  import sys
+
+  opts,args=getopt(sys.argv[1:],short,[long])
+  opts=opts2dic(opts)
+  if short in opts:
+    return opts[short]
+  elif long in opts:
+    return opts[long]
+  else:
+    return default
