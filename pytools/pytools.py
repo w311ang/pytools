@@ -183,7 +183,7 @@ def kill(name,force=True,child=False):
     import psutil
     import os
 
-    if type(name)=='int':
+    if type(name) is int:
       pid=[name]
     else:
       pid=get_pid(name)
