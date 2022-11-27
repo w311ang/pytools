@@ -400,7 +400,7 @@ def get_parent_process(ok_names, limit=10):
 
     return False, parent.name()
 
-def get_parent_process2(ok_names, base_pid=os.getpid(), limit=10):
+def get_parent_process_pid(ok_names, base_pid=os.getpid(), limit=10):
     '''Walk up the process tree until we find a process we like.
 
     Arguments:
