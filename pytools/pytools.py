@@ -184,7 +184,7 @@ def kill(name,force=True,child=False):
     import os
 
     if type(name)=='int':
-      pid=name
+      pid=[name]
     else:
       pid=get_pid(name)
     childArg='/t' if child else ''
