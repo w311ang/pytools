@@ -538,3 +538,9 @@ def getAllChildProcessPid(pid):
     for child in children:
         pids.append(child.pid)
     return pids
+
+def getProcessCpuUsage(pid):
+    import psutil
+
+    proc=psutil.Process(pid)
+    proc.cpu_percent(interval=0.5) / psutil.cpu_count()
