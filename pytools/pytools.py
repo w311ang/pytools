@@ -400,6 +400,32 @@ def get_parent_process(ok_names, limit=10):
 
     return False, parent.name()
 
+def get_parent_process2(ok_names, base_pid=os.getpid(), limit=10):
+    '''Walk up the process tree until we find a process we like.
+
+    Arguments:
+        ok_names: Return the first one of these processes that we find
+    '''
+
+    import psutil
+    import os
+
+    depth = 0
+    this_proc = psutil.Process(base_pid)
+    next_proc = parent = psutil.Process(this_proc.ppid())
+    while depth < limit:
+
+        if next_proc.name() in ok_names:
+            return True, next_proc.pid()
+
+        try:
+            next_proc = psutil.Process(next_proc.ppid())
+        except psutil.NoSuchProcess:
+            break
+        depth += 1
+
+    return False, parent.name()
+
 def ifPowerOf2(n):
     return (n & (n-1) == 0) and n != 0
 
