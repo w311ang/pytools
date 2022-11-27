@@ -528,3 +528,13 @@ def getopt(short,long,default):
     return opts[long]
   else:
     return default
+
+def getAllChildProcessPid(pid):
+    import psutil
+
+    current_process = psutil.Process(pid)
+    children = current_process.children(recursive=True)
+    pids=[]
+    for child in children:
+        pids.append(child.pid)
+    return pids
