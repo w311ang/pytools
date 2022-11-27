@@ -543,11 +543,11 @@ def getAllChildProcessPid(pid):
         pids.append(child.pid)
     return pids
 
-def getProcessCpuUsage(pid):
+def getProcessCpuUsage(pid,fix=psutil.cpu_count()):
     import psutil
 
     proc=psutil.Process(pid)
-    return proc.cpu_percent(interval=0.5) / psutil.cpu_count()
+    return proc.cpu_percent(interval=0.5) / fix
 
 import time
 import queue
