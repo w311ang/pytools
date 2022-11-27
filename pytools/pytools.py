@@ -195,7 +195,7 @@ def kill(name,force=True,child=False):
               p=psutil.Process(i)
               p.terminate()
             else:
-              r=os.popen('taskkill /f %s/pid %s 2>&1'%(childArg,i)).read()
+              r=os.popen('taskkill /f %s /pid %s 2>&1'%(childArg,i)).read()
               killDetail+=r
         if force:
             return killDetail
