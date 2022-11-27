@@ -553,17 +553,20 @@ import time
 import queue
 
 # https://stackoverflow.com/questions/36817050/interrupting-a-queue-get/37042940#37042940
-def get_timed_interruptable_precise(in_queue, timeout):
+def getQueue(in_queue, timeout=None):
     '''                                                                         
     Perform a queue.get() with a short timeout to avoid                         
-    blocking SIGINT on Windows.  Track the time closely
-    for high precision on the timeout.                                                 
+    blocking SIGINT on Windows.                                                 
     '''
-    timeout += time.monotonic()
     while True:
         try:
             # Allow check for Ctrl-C every second                               
-            return in_queue.get(timeout=max(0, min(1, timeout - time.monotonic())))
+            return in_queue.get(timeout=(min(1, timeout) if timeout else 1))
         except queue.Empty:
-            if time.monotonic() > timeout:
-                raise
+            if timeout:
+                if timeout < 1:
+                    raise
+                else:
+                    timeout -=1
+            else:
+                pass
