@@ -548,3 +548,22 @@ def getProcessCpuUsage(pid):
 
     proc=psutil.Process(pid)
     return proc.cpu_percent(interval=0.5) / psutil.cpu_count()
+
+import time
+import queue
+
+# https://stackoverflow.com/questions/36817050/interrupting-a-queue-get/37042940#37042940
+def get_timed_interruptable_precise(in_queue, timeout):
+    '''                                                                         
+    Perform a queue.get() with a short timeout to avoid                         
+    blocking SIGINT on Windows.  Track the time closely
+    for high precision on the timeout.                                                 
+    '''
+    timeout += time.monotonic()
+    while True:
+        try:
+            # Allow check for Ctrl-C every second                               
+            return in_queue.get(timeout=max(0, min(1, timeout - time.monotonic())))
+        except queue.Empty:
+            if time.monotonic() > timeout:
+                raise
