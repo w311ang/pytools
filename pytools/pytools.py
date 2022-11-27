@@ -179,11 +179,15 @@ def get_pid(name):
             re.append(pid.pid)
     return re
 
-def kill(name,force=True):
+def kill(name,force=True,child=False):
     import psutil
     import os
 
-    pid=get_pid(name)
+    if type(name)=='int':
+      pid=name
+    else:
+      pid=get_pid(name)
+    childArg='/t' if child else ''
     if pid!=[]:
         killDetail=''
         for i in pid:
@@ -191,7 +195,7 @@ def kill(name,force=True):
               p=psutil.Process(i)
               p.terminate()
             else:
-              r=os.popen('taskkill /f /pid %s 2>&1'%i).read()
+              r=os.popen('taskkill /f %s/pid %s 2>&1'%(childArg,i)).read()
               killDetail+=r
         if force:
             return killDetail
