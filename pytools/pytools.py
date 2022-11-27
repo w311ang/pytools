@@ -543,4 +543,4 @@ def getProcessCpuUsage(pid):
     import psutil
 
     proc=psutil.Process(pid)
-    proc.cpu_percent(interval=0.5) / psutil.cpu_count()
+    return proc.cpu_percent(interval=0.5) / psutil.cpu_count()
