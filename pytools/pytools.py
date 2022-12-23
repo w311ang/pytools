@@ -576,3 +576,15 @@ def getQueue(in_queue, timeout=None):
                     timeout -=1
             else:
                 pass
+
+def getlog(filename,full=False):
+    try:
+        with open(filename) as text:
+            log=text.read()
+    except FileNotFoundError:
+        return ''
+    if full:
+        return log
+    else:
+        log=log.splitlines()
+        return '\n'.join(log[-100:])
