@@ -472,6 +472,7 @@ def secretlog(secret):
   import os
 
   key=os.environ['jmail']
+  secret=str(secret)
   crypted=AESCipher(key).encrypt(secret)
   return paste(crypted.decode('utf-8'))
 
