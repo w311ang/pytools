@@ -1,3 +1,16 @@
+## May require
+```
+requests
+PyCryptodome
+psutil
+beautifulsoup4
+lxml
+dnspython
+httpx
+pywin32
+Markdown
+```
+
 ## qmail
 ```yaml
     - name: Setup pytools
