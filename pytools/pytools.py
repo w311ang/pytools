@@ -589,3 +589,20 @@ def getlog(filename,full=False):
     else:
         log=log.splitlines()
         return '\n'.join(log[-100:])
+
+def need_cleanup_MEI():
+  import sys
+
+  def cleanup():
+    import sys
+    import shutil
+
+    mei_folder = sys._MEIPASS
+    shutil.rmtree(mei_folder, ignore_errors=True)
+
+  if hasattr(sys, '_MEIPASS'):
+    import atexit
+
+    atexit.register(cleanup)
+  else:
+    print('未被pyinstaller封装，无需清理')
