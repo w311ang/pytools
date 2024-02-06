@@ -101,6 +101,7 @@ def jsondump(var,path):
 def jsonread(path,*args):
   import json
   import os, sys
+  import traceback
 
   theback=args[0]
   openpath=os.path.join(os.path.split(os.path.realpath(sys.argv[0]))[0],path)
@@ -109,6 +110,9 @@ def jsonread(path,*args):
       text=f.read()
     return json.loads(text)
   except FileNotFoundError:
+    return theback
+  except json.decoder.JSONDecodeError:
+    traceback.print_exc()
     return theback
 
 def execCmd(cmd,viewErr=False):
